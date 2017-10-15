@@ -4,68 +4,65 @@ import language.Operand;
 import language.Operator;
 
 /**
- * The {@code NegateOperator} is an operator that performs negation on a single integer
+ * The {@code NegateOperator} is an operator that performs negation on a single
+ * integer
+ * 
  * @author jcollard, jddevaug
  *
  */
-public class NegateOperator implements Operator<Integer> {
+public class NegateOperator implements Operator<Integer>
+{
 
-  //TODO Have you taken a look at the PlusOperator yet?
-  //You will notice that it extends the abstract class BinaryOperator
-  // You should take a moment and review that class before trying to
-  // implement this one. Although it is not required, 
-  // it might be a good idea to first write
-  // an abstract class called UnaryOperator that abstracts out
-  // all the bits for UnaryOperators.
+    private Operand<Integer> op0;
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getNumberOfArguments()
+    {
+	return 1;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public int getNumberOfArguments() {
-    //TODO Have you taken a look at the PlusOperator yet?
-    //You will notice that it extends the abstract class BinaryOperator
-    // You should take a moment and review that class before trying to
-    // implement this one. Although it is not required, 
-    // it might be a good idea to first write
-    // an abstract class called UnaryOperator that abstracts out
-    // all the bits for UnaryOperators.
-    return 0;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Operand<Integer> performOperation()
+    {
+	if (op0 == null)
+	{
+	    throw new IllegalStateException("All arguments must be set");
+	}
+	return new Operand<Integer>(-1 * op0.getValue());
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public Operand<Integer> performOperation() {
-    //TODO Have you taken a look at the PlusOperator yet?
-    //You will notice that it extends the abstract class BinaryOperator
-    // You should take a moment and review that class before trying to
-    // implement this one. Although it is not required, 
-    // it might be a good idea to first write
-    // an abstract class called UnaryOperator that abstracts out
-    // all the bits for UnaryOperators.
-    return null;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setOperand(int i, Operand<Integer> operand)
+    {
+	if (operand == null)
+	{
+	    throw new NullPointerException("Operand can't be null");
+	}
+	if (i > 0)
+	{
+	    throw new IllegalArgumentException("Only one operand is allowed");
+	} else
+	{
+	    if (op0 != null)
+	    {
+		throw new IllegalStateException(
+			"Operand value can not be overwritten");
+	    }
+	    op0 = operand;
+	}
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setOperand(int i, Operand<Integer> operand) {
-    //TODO Have you taken a look at the PlusOperator yet?
-    //You will notice that it extends the abstract class BinaryOperator
-    // You should take a moment and review that class before trying to
-    // implement this one. Although it is not required, 
-    // it might be a good idea to first write
-    // an abstract class called UnaryOperator that abstracts out
-    // all the bits for UnaryOperators.
-
-    //TODO Negation on an integer is simply flipping its sign
-    //So the negation of some int value i is -i.
-
-  }
-
-
+    public int priority()
+    {
+	return 0;
+    }
 }
