@@ -65,4 +65,10 @@ public class NegateOperator implements Operator<Integer>
     {
 	return 0;
     }
+
+    @Override
+    public Operand<Integer> performInverse()
+    {
+	return performOperation();
+    }
 }

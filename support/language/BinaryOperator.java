@@ -80,5 +80,7 @@ public abstract class BinaryOperator<T> implements Operator<T>
     }
 
     public abstract int priority();
+    
+    public abstract Operand<Integer> performInverse();
 
 }

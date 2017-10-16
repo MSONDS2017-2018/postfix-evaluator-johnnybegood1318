@@ -40,6 +40,20 @@ public class DivOperator extends BinaryOperator<Integer>
 	Integer result = op0.getValue() / op1.getValue();
 	return new Operand<Integer>(result);
     }
+    
+    @Override
+    public Operand<Integer> performInverse()
+    {
+	Operand<Integer> op0 = this.getOp0();
+	Operand<Integer> op1 = this.getOp1();
+	if (op0 == null || op1 == null)
+	{
+	    throw new IllegalStateException(
+		    "Could not perform operation prior to operands being set.");
+	}
+	Integer result = op0.getValue() * op1.getValue();
+	return new Operand<Integer>(result);
+    }
 
     /**
      * {@inheritDoc}

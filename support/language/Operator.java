@@ -55,5 +55,7 @@ public interface Operator<T>
     public void setOperand(int position, Operand<T> operand);
 
     public int priority();
+    
+    public Operand<Integer> performInverse();
 
 }
