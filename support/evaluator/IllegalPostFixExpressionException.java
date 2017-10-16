@@ -1,20 +1,24 @@
 package evaluator;
 
 /**
- * A {@link IllegalPostFixExpressionException} is thrown at runtime when an invalid
- * PostFixExpression is encountered.
+ * A {@link IllegalPostFixExpressionException} is thrown at runtime when an
+ * invalid PostFixExpression is encountered.
+ * 
  * @author jcollard, jddevaug
  *
  */
-public class IllegalPostFixExpressionException extends RuntimeException {
-  
-  private static final long serialVersionUID = 1L;
+public class IllegalPostFixExpressionException extends RuntimeException
+{
 
-  public IllegalPostFixExpressionException() {
-    super();
-  }
+    private static final long serialVersionUID = 1L;
 
-  public IllegalPostFixExpressionException(String message) {
-    super(message);
-  }
+    public IllegalPostFixExpressionException()
+    {
+	super();
+    }
+
+    public IllegalPostFixExpressionException(String message)
+    {
+	super(message);
+    }
 }
