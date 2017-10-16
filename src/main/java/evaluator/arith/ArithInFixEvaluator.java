@@ -82,7 +82,9 @@ public class ArithInFixEvaluator implements PostFixEvaluator<Integer>
 		    } else if (operatorTop.priority() < temp.priority()
 			    || operatorTop.priority() == temp.priority())
 		    {
-			higherOperation();
+			while (operatorTop != null && operatorTop
+				.priority() <= temp.priority())
+			    higherOperation();
 			if (operator.isEmpty())
 			{
 			    operator.push(new LinearNodes<Operator<Integer>>(

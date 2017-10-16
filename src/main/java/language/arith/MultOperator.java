@@ -53,7 +53,7 @@ public class MultOperator extends BinaryOperator<Integer>
 	Integer result = op1.getValue() / op0.getValue();
 	return new Operand<Integer>(result);
     }
-    
+
     public int priority()
     {
 	return 2;

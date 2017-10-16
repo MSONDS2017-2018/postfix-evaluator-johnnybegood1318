@@ -49,9 +49,9 @@ public class SubOperator extends BinaryOperator<Integer>
 	Integer result = op0.getValue() + op1.getValue();
 	return new Operand<Integer>(result);
     }
-    
+
     public int priority()
     {
-	return 5;
+	return 3;
     }
 }

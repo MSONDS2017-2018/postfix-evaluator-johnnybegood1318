@@ -40,7 +40,7 @@ public class DivOperator extends BinaryOperator<Integer>
 	Integer result = op0.getValue() / op1.getValue();
 	return new Operand<Integer>(result);
     }
-    
+
     @Override
     public Operand<Integer> performInverse()
     {
@@ -64,15 +64,29 @@ public class DivOperator extends BinaryOperator<Integer>
 	if (i == 1 && operand.getValue() == 0)
 	{
 	    throw new IllegalStateException();
+	}
+	if (operand == null)
+	{
+	    throw new NullPointerException("Could not set null operand.");
+	}
+	if (i > 1)
+	{
+	    throw new IllegalArgumentException(
+		    "Binary operator only accepts operands 0 and 1 "
+			    + "but recieved " + i + ".");
+	}
+	if (i == 0)
+	{
+	    super.op0 = operand;
 	} else
 	{
-	    super.setOperand(i, operand);
+	    super.op1 = operand;
 	}
     }
 
     @Override
     public int priority()
     {
-	return 3;
+	return 2;
     }
 }

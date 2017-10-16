@@ -95,7 +95,7 @@ public class ArithInFixEvaluatorTest
     public void testEvaluateComplex()
     {
 	Integer result = evaluator.evaluate("2 / 1 * 2");
-	assertEquals(new Integer(1), result);
+	assertEquals(new Integer(4), result);
 
 	result = evaluator.evaluate("2 * 15 / 3 + 6");
 	assertEquals(new Integer(16), result);

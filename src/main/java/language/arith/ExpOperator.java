@@ -30,11 +30,12 @@ public class ExpOperator extends BinaryOperator<Integer>
 	    throw new IllegalStateException(
 		    "Could not perform operation prior to operands being set.");
 	}
-	Integer result = (int)(Math.log(op1.getValue()) / Math.log(op0.getValue()));
-	
+	Integer result = (int) (Math.log(op1.getValue()) / Math.log(op0
+		.getValue()));
+
 	return new Operand<Integer>(result);
     }
-    
+
     public Operand<Integer> optionalInverse()
     {
 	Operand<Integer> op0 = this.getOp0();
@@ -44,11 +45,11 @@ public class ExpOperator extends BinaryOperator<Integer>
 	    throw new IllegalStateException(
 		    "Could not perform operation prior to operands being set.");
 	}
-	Integer result = (int)Math.pow(op1.getValue(), 1.0 /op0.getValue());
-	
+	Integer result = (int) Math.pow(op1.getValue(), 1.0 / op0.getValue());
+
 	return new Operand<Integer>(result);
     }
-    
+
     @Override
     public int priority()
     {

@@ -35,7 +35,7 @@ public class EqualOperator implements Operator<Integer>
     {
 	return -1;
     }
-    
+
     public Operand<Integer> performInverse()
     {
 	throw new EqualsException("Not a valid operation");

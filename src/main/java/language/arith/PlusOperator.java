@@ -29,7 +29,7 @@ public class PlusOperator extends BinaryOperator<Integer>
 	Integer result = op0.getValue() + op1.getValue();
 	return new Operand<Integer>(result);
     }
-    
+
     @Override
     public Operand<Integer> performInverse()
     {
@@ -46,6 +46,6 @@ public class PlusOperator extends BinaryOperator<Integer>
 
     public int priority()
     {
-	return 4;
+	return 3;
     }
 }

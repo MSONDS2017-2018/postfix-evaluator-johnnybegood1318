@@ -12,8 +12,8 @@ package language;
 public abstract class BinaryOperator<T> implements Operator<T>
 {
 
-    private Operand<T> op0;
-    private Operand<T> op1;
+    protected Operand<T> op0;
+    protected Operand<T> op1;
 
     /**
      * Returns the number of arguments. @ return 2
@@ -80,7 +80,7 @@ public abstract class BinaryOperator<T> implements Operator<T>
     }
 
     public abstract int priority();
-    
+
     public abstract Operand<Integer> performInverse();
 
 }

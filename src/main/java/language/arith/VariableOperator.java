@@ -12,7 +12,7 @@ public class VariableOperator implements Operator<Integer>
     {
 	throw new VariableException("No operation");
     }
-    
+
     @Override
     public int priority()
     {
@@ -24,17 +24,17 @@ public class VariableOperator implements Operator<Integer>
     {
 	throw new VariableException("No inverse");
     }
-    
+
     @Override
     public void setOperand(int i, Operand<Integer> operand)
     {
 	throw new VariableException("No operands");
     }
-    
+
     @Override
     public final int getNumberOfArguments()
     {
 	return 0;
     }
-    
+
 }
