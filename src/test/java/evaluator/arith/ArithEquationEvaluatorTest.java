@@ -63,6 +63,9 @@ public class ArithEquationEvaluatorTest
 
 	result = evaluator.evaluate("1 * 2 * 3 * r = 24");
 	assertEquals(new Integer(4), result);
+	
+	result = evaluator.evaluate("3 * 3 * x + 9 = 18");
+	assertEquals(new Integer(1), result);
     }
 
     @Test(timeout = 5000)
