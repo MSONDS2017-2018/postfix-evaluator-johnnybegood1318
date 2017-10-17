@@ -7,20 +7,17 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LinkedStackTest
-{
+public class LinkedStackTest {
 
     private StackInterface<Integer> stack;
 
     @Before
-    public void setup()
-    {
+    public void setup() {
 	stack = new LinkedStack<Integer>();
     }
 
     @Test(timeout = 5000)
-    public void testStack()
-    {
+    public void testStack() {
 	assertTrue("Stack should be empty after being constructed.", stack
 		.isEmpty());
 	assertEquals(
@@ -51,14 +48,12 @@ public class LinkedStackTest
     }
 
     @Test(timeout = 5000, expected = StackUnderflowException.class)
-    public void testStackUnderflowPop()
-    {
+    public void testStackUnderflowPop() {
 	stack.pop();
     }
 
     @Test(timeout = 5000, expected = StackUnderflowException.class)
-    public void testStackUnderflowTop()
-    {
+    public void testStackUnderflowTop() {
 	stack.top();
     }
 

@@ -9,8 +9,7 @@ package language;
  * @param <T>
  *            the type of data stored in {@link Operand}s.
  */
-public interface Operator<T>
-{
+public interface Operator<T> {
 
     /**
      * Returns the number of {@link Operand}s that this {@link Operator} needs

@@ -9,8 +9,7 @@ package language;
  * @param <T>
  *            they type of the {@link Operand} being evaluated
  */
-public abstract class BinaryOperator<T> implements Operator<T>
-{
+public abstract class BinaryOperator<T> implements Operator<T> {
 
     protected Operand<T> op0;
     protected Operand<T> op1;
@@ -19,8 +18,7 @@ public abstract class BinaryOperator<T> implements Operator<T>
      * Returns the number of arguments. @ return 2
      */
     @Override
-    public final int getNumberOfArguments()
-    {
+    public final int getNumberOfArguments() {
 	return 2;
     }
 
@@ -28,30 +26,23 @@ public abstract class BinaryOperator<T> implements Operator<T>
      * {@inheritDoc}.
      */
     @Override
-    public void setOperand(int i, Operand<T> operand)
-    {
-	if (operand == null)
-	{
+    public void setOperand(int i, Operand<T> operand) {
+	if (operand == null) {
 	    throw new NullPointerException("Could not set null operand.");
 	}
-	if (i > 1)
-	{
+	if (i > 1) {
 	    throw new IllegalArgumentException(
 		    "Binary operator only accepts operands 0 and 1 "
 			    + "but recieved " + i + ".");
 	}
-	if (i == 0)
-	{
-	    if (op0 != null)
-	    {
+	if (i == 0) {
+	    if (op0 != null) {
 		throw new IllegalStateException("Position " + i
 			+ " has been previously set.");
 	    }
 	    op0 = operand;
-	} else
-	{
-	    if (op1 != null)
-	    {
+	} else {
+	    if (op1 != null) {
 		throw new IllegalStateException("Position " + i
 			+ " has been previously set.");
 	    }
@@ -64,8 +55,7 @@ public abstract class BinaryOperator<T> implements Operator<T>
      * 
      * @return the first operand
      */
-    public Operand<T> getOp0()
-    {
+    public Operand<T> getOp0() {
 	return op0;
     }
 
@@ -74,8 +64,7 @@ public abstract class BinaryOperator<T> implements Operator<T>
      * 
      * @return the second operand
      */
-    public Operand<T> getOp1()
-    {
+    public Operand<T> getOp1() {
 	return op1;
     }
 

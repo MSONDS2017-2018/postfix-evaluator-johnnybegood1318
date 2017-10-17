@@ -10,8 +10,7 @@ import language.Operator;
  * @author jcollard, jddevaug
  *
  */
-public class NegateOperator implements Operator<Integer>
-{
+public class NegateOperator implements Operator<Integer> {
 
     private Operand<Integer> op0;
 
@@ -19,8 +18,7 @@ public class NegateOperator implements Operator<Integer>
      * {@inheritDoc}
      */
     @Override
-    public int getNumberOfArguments()
-    {
+    public int getNumberOfArguments() {
 	return 1;
     }
 
@@ -28,10 +26,8 @@ public class NegateOperator implements Operator<Integer>
      * {@inheritDoc}
      */
     @Override
-    public Operand<Integer> performOperation()
-    {
-	if (op0 == null)
-	{
+    public Operand<Integer> performOperation() {
+	if (op0 == null) {
 	    throw new IllegalStateException("All arguments must be set");
 	}
 	return new Operand<Integer>(-1 * op0.getValue());
@@ -41,19 +37,14 @@ public class NegateOperator implements Operator<Integer>
      * {@inheritDoc}
      */
     @Override
-    public void setOperand(int i, Operand<Integer> operand)
-    {
-	if (operand == null)
-	{
+    public void setOperand(int i, Operand<Integer> operand) {
+	if (operand == null) {
 	    throw new NullPointerException("Operand can't be null");
 	}
-	if (i > 0)
-	{
+	if (i > 0) {
 	    throw new IllegalArgumentException("Only one operand is allowed");
-	} else
-	{
-	    if (op0 != null)
-	    {
+	} else {
+	    if (op0 != null) {
 		throw new IllegalStateException(
 			"Operand value can not be overwritten");
 	    }
@@ -61,14 +52,12 @@ public class NegateOperator implements Operator<Integer>
 	}
     }
 
-    public int priority()
-    {
+    public int priority() {
 	return 0;
     }
 
     @Override
-    public Operand<Integer> performInverse()
-    {
+    public Operand<Integer> performInverse() {
 	return performOperation();
     }
 }

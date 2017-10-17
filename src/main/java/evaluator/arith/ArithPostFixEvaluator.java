@@ -15,16 +15,14 @@ import java.util.regex.*;
  * arithmetic expressions.
  *
  */
-public class ArithPostFixEvaluator implements PostFixEvaluator<Integer>
-{
+public class ArithPostFixEvaluator implements PostFixEvaluator<Integer> {
 
     private final StackInterface<LinearNodes<Operand<Integer>>> stack;
 
     /**
      * Constructs an {@link ArithPostFixEvaluator}.
      */
-    public ArithPostFixEvaluator()
-    {
+    public ArithPostFixEvaluator() {
 	this.stack = new LinkedStack<>(); // TODO Initialize to your LinkedStack
     }
 
@@ -34,8 +32,7 @@ public class ArithPostFixEvaluator implements PostFixEvaluator<Integer>
      * @return the result
      */
     @Override
-    public Integer evaluate(String expr)
-    {
+    public Integer evaluate(String expr) {
 	Pattern p1 = Pattern.compile("\\d");
 	Pattern p2 = Pattern.compile("([!+/*-])");
 	Matcher m1 = p1.matcher(expr);
@@ -45,17 +42,13 @@ public class ArithPostFixEvaluator implements PostFixEvaluator<Integer>
 	    throw new IllegalPostFixExpressionException();
 
 	ArithPostFixParser parser = new ArithPostFixParser(expr);
-	while (parser.hasNext())
-	{
-	    switch (parser.nextType())
-	    {
+	while (parser.hasNext()) {
+	    switch (parser.nextType()) {
 		case OPERAND:
-		    if (stack.size() == 0)
-		    {
+		    if (stack.size() == 0) {
 			stack.push(new LinearNodes<Operand<Integer>>(parser
 				.nextOperand(), null));
-		    } else
-		    {
+		    } else {
 			stack.push(new LinearNodes<Operand<Integer>>(parser
 				.nextOperand(), stack.top()));
 		    }
@@ -73,12 +66,10 @@ public class ArithPostFixEvaluator implements PostFixEvaluator<Integer>
 	return result;
     }
 
-    private void operatorFound(ArithPostFixParser parser)
-    {
+    private void operatorFound(ArithPostFixParser parser) {
 	Operator<Integer> next = parser.nextOperator();
 	LinearNodes<Operand<Integer>> nextNode = stack.top();
-	switch (next.getNumberOfArguments())
-	{
+	switch (next.getNumberOfArguments()) {
 	    case 2:
 		twoArgs(next, nextNode);
 		break;
@@ -89,12 +80,9 @@ public class ArithPostFixEvaluator implements PostFixEvaluator<Integer>
     }
 
     private LinearNodes<Operand<Integer>> twoArgs(Operator<Integer> operator,
-	    LinearNodes<Operand<Integer>> next)
-    {
-	if (next != null)
-	{
-	    if (next.getNext().getNext() == null)
-	    {
+	    LinearNodes<Operand<Integer>> next) {
+	if (next != null) {
+	    if (next.getNext().getNext() == null) {
 		operator.setOperand(0, next.getNext().getValue());
 		operator.setOperand(1, next.getValue());
 		next.setValue(operator.performOperation());
@@ -107,12 +95,9 @@ public class ArithPostFixEvaluator implements PostFixEvaluator<Integer>
     }
 
     private LinearNodes<Operand<Integer>> unary(Operator<Integer> operator,
-	    LinearNodes<Operand<Integer>> next)
-    {
-	if (next != null)
-	{
-	    if (next.getNext() == null)
-	    {
+	    LinearNodes<Operand<Integer>> next) {
+	if (next != null) {
+	    if (next.getNext() == null) {
 		operator.setOperand(0, next.getValue());
 		next.setValue(operator.performOperation());
 		return next;
@@ -122,8 +107,7 @@ public class ArithPostFixEvaluator implements PostFixEvaluator<Integer>
 	return next;
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
 	ArithPostFixEvaluator test = new ArithPostFixEvaluator();
 	Integer x = test.evaluate("1 2 3 - -");
 	System.out.println(x);

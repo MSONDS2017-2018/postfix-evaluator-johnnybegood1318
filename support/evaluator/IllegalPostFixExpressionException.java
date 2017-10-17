@@ -7,18 +7,15 @@ package evaluator;
  * @author jcollard, jddevaug
  *
  */
-public class IllegalPostFixExpressionException extends RuntimeException
-{
+public class IllegalPostFixExpressionException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public IllegalPostFixExpressionException()
-    {
+    public IllegalPostFixExpressionException() {
 	super();
     }
 
-    public IllegalPostFixExpressionException(String message)
-    {
+    public IllegalPostFixExpressionException(String message) {
 	super(message);
     }
 }

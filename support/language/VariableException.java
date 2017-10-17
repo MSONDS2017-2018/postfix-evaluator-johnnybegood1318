@@ -1,17 +1,14 @@
 package language;
 
-public class VariableException extends RuntimeException
-{
+public class VariableException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public VariableException()
-    {
+    public VariableException() {
 	super();
     }
 
-    public VariableException(String message)
-    {
+    public VariableException(String message) {
 	super(message);
     }
 

@@ -7,19 +7,16 @@ package stack;
  * @param <T>
  *            the elements stored in the stack
  */
-public class LinkedStack<T> implements StackInterface<T>
-{
+public class LinkedStack<T> implements StackInterface<T> {
 
     private LinearNodes<T> top;
 
     private int size = 0;
 
-    public LinkedStack()
-    {
+    public LinkedStack() {
     }
 
-    public LinkedStack(T value)
-    {
+    public LinkedStack(T value) {
 	top = new LinearNodes<T>(value, top);
 	size++;
     }
@@ -28,8 +25,7 @@ public class LinkedStack<T> implements StackInterface<T>
      * {@inheritDoc}.
      */
     @Override
-    public T pop()
-    {
+    public T pop() {
 	if (top == null)
 	    throw new StackUnderflowException();
 	T value = top.getValue();
@@ -42,8 +38,7 @@ public class LinkedStack<T> implements StackInterface<T>
      * {@inheritDoc}.
      */
     @Override
-    public T top()
-    {
+    public T top() {
 	if (top == null)
 	    throw new StackUnderflowException();
 	return top.getValue();
@@ -53,8 +48,7 @@ public class LinkedStack<T> implements StackInterface<T>
      * {@inheritDoc}.
      */
     @Override
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
 	if (top != null)
 	    return false;
 	else
@@ -65,8 +59,7 @@ public class LinkedStack<T> implements StackInterface<T>
      * {@inheritDoc}.
      */
     @Override
-    public int size()
-    {
+    public int size() {
 	return size;
     }
 
@@ -74,20 +67,17 @@ public class LinkedStack<T> implements StackInterface<T>
      * {@inheritDoc}.
      */
     @Override
-    public void push(T elem)
-    {
+    public void push(T elem) {
 	top = new LinearNodes<T>(elem, top);
 	size++;
     }
 
-    public void clear()
-    {
+    public void clear() {
 	top = null;
 	size = 0;
     }
 
-    public String toString()
-    {
+    public String toString() {
 	return top.toString();
     }
 

@@ -5,8 +5,7 @@ import language.Operator;
 import parser.PostFixParser;
 import parser.PostFixParser.Type;
 
-public class ArithPostFixParserExample
-{
+public class ArithPostFixParserExample {
 
     /**
      * Main method.
@@ -15,8 +14,7 @@ public class ArithPostFixParserExample
      *            - command line arguments passed into class
      */
     @SuppressWarnings("unused")
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
 
 	PostFixParser<Integer> parser = new ArithPostFixParser("1 2 +");
 

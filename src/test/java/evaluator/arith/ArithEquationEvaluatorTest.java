@@ -8,27 +8,23 @@ import evaluator.PostFixEvaluator;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ArithEquationEvaluatorTest
-{
+public class ArithEquationEvaluatorTest {
 
     private PostFixEvaluator<Integer> evaluator;
 
     @Before
-    public void setup()
-    {
+    public void setup() {
 	evaluator = new ArithEquationEvaluator();
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateSimple()
-    {
+    public void testEvaluateSimple() {
 	Integer result = evaluator.evaluate("1");
 	assertEquals(new Integer(1), result);
     }
 
     @Test(timeout = 5000)
-    public void testEvaluatePlus()
-    {
+    public void testEvaluatePlus() {
 	Integer result = evaluator.evaluate("w + 2 = 3");
 	assertEquals(new Integer(1), result);
 
@@ -40,8 +36,7 @@ public class ArithEquationEvaluatorTest
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateSub()
-    {
+    public void testEvaluateSub() {
 	Integer result = evaluator.evaluate("q - 2 = -1");
 	assertEquals(new Integer(1), result);
 
@@ -53,8 +48,7 @@ public class ArithEquationEvaluatorTest
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateMult()
-    {
+    public void testEvaluateMult() {
 	Integer result = evaluator.evaluate("1 * x = 2");
 	assertEquals(new Integer(2), result);
 
@@ -63,14 +57,13 @@ public class ArithEquationEvaluatorTest
 
 	result = evaluator.evaluate("1 * 2 * 3 * r = 24");
 	assertEquals(new Integer(4), result);
-	
+
 	result = evaluator.evaluate("3 * 3 * x + 9 = 18");
 	assertEquals(new Integer(1), result);
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateNegate()
-    {
+    public void testEvaluateNegate() {
 	Integer result = evaluator.evaluate("! x = 1");
 	assertEquals(new Integer(-1), result);
 
@@ -82,8 +75,7 @@ public class ArithEquationEvaluatorTest
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateDiv()
-    {
+    public void testEvaluateDiv() {
 	Integer result = evaluator.evaluate("Z / 1 = 2");
 	assertEquals(new Integer(2), result);
 
@@ -95,8 +87,7 @@ public class ArithEquationEvaluatorTest
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateComplex()
-    {
+    public void testEvaluateComplex() {
 	Integer result = evaluator.evaluate("4 / x  * 2 = 8");
 	assertEquals(new Integer(1), result);
 
@@ -111,8 +102,7 @@ public class ArithEquationEvaluatorTest
     }
 
     @Test(timeout = 5000, expected = IllegalPostFixExpressionException.class)
-    public void testInvalidExpression()
-    {
+    public void testInvalidExpression() {
 	evaluator.evaluate("1 2");
     }
 

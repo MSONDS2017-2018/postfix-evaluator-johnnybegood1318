@@ -9,8 +9,7 @@ import language.Operator;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PlusOperatorTest
-{
+public class PlusOperatorTest {
     private Operator<Integer> operator;
     private Operand<Integer> op0;
     private Operand<Integer> op1;
@@ -19,16 +18,14 @@ public class PlusOperatorTest
      * Runs before each test.
      */
     @Before
-    public void setup()
-    {
+    public void setup() {
 	operator = new PlusOperator();
 	op0 = new Operand<Integer>(5);
 	op1 = new Operand<Integer>(7);
     }
 
     @Test(timeout = 5000)
-    public void testPerformOperation()
-    {
+    public void testPerformOperation() {
 	operator.setOperand(0, op0);
 	operator.setOperand(1, op1);
 
@@ -39,29 +36,25 @@ public class PlusOperatorTest
     }
 
     @Test(timeout = 5000)
-    public void testGetNumberOfArguments()
-    {
+    public void testGetNumberOfArguments() {
 	assertEquals("Binary operator should have 2 arguments.", operator
 		.getNumberOfArguments(), 2);
     }
 
     @Test(timeout = 5000, expected = IllegalArgumentException.class)
-    public void testIllegalArgumentException()
-    {
+    public void testIllegalArgumentException() {
 	operator.setOperand(2, op0);
 	fail("Binary operator should not except input to position 2");
     }
 
     @Test(timeout = 5000, expected = NullPointerException.class)
-    public void testNullArgumentException()
-    {
+    public void testNullArgumentException() {
 	operator.setOperand(0, null);
 	fail("Operator should not allow null arguments");
     }
 
     @Test(timeout = 5000, expected = IllegalStateException.class)
-    public void testIllegalStateException()
-    {
+    public void testIllegalStateException() {
 	operator.setOperand(0, op0);
 	operator.setOperand(0, op0);
 
@@ -69,8 +62,7 @@ public class PlusOperatorTest
     }
 
     @Test(timeout = 5000, expected = IllegalStateException.class)
-    public void testIllegalStateExceptionPerform()
-    {
+    public void testIllegalStateExceptionPerform() {
 	operator.performOperation();
 	fail("Operator should not compute when all arguments have not been set.");
     }

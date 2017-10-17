@@ -9,8 +9,7 @@ import language.Operator;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MultOperatorTest
-{
+public class MultOperatorTest {
     Operator<Integer> operator;
     Operand<Integer> op0;
     Operand<Integer> op1;
@@ -19,16 +18,14 @@ public class MultOperatorTest
      * Runs before each test.
      */
     @Before
-    public void setup()
-    {
+    public void setup() {
 	operator = new MultOperator();
 	op0 = new Operand<Integer>(5);
 	op1 = new Operand<Integer>(7);
     }
 
     @Test(timeout = 5000)
-    public void testPerformOperation()
-    {
+    public void testPerformOperation() {
 	operator.setOperand(0, op0);
 	operator.setOperand(1, op1);
 
@@ -39,23 +36,20 @@ public class MultOperatorTest
     }
 
     @Test(timeout = 5000, expected = IllegalStateException.class)
-    public void testIllegalStateException()
-    {
+    public void testIllegalStateException() {
 	operator.setOperand(0, new Operand<Integer>(5));
 	operator.setOperand(0, new Operand<Integer>(12));
 	fail("Operator should not allow the same operand position to be set more than once");
     }
 
     @Test(timeout = 5000, expected = IllegalStateException.class)
-    public void testIllegalStateExceptionPerform()
-    {
+    public void testIllegalStateExceptionPerform() {
 	operator.performOperation();
 	fail("Operator should not compute when all arguments have not been set.");
     }
 
     @Test(timeout = 5000, expected = NullPointerException.class)
-    public void testNullArgumentException()
-    {
+    public void testNullArgumentException() {
 	operator.setOperand(0, null);
 	fail("Operator should not allow null arguments");
     }

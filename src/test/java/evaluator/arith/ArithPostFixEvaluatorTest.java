@@ -8,27 +8,23 @@ import evaluator.PostFixEvaluator;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ArithPostFixEvaluatorTest
-{
+public class ArithPostFixEvaluatorTest {
 
     private PostFixEvaluator<Integer> evaluator;
 
     @Before
-    public void setup()
-    {
+    public void setup() {
 	evaluator = new ArithPostFixEvaluator();
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateSimple()
-    {
+    public void testEvaluateSimple() {
 	Integer result = evaluator.evaluate("1");
 	assertEquals(new Integer(1), result);
     }
 
     @Test(timeout = 5000)
-    public void testEvaluatePlus()
-    {
+    public void testEvaluatePlus() {
 	Integer result = evaluator.evaluate("1 2 +");
 	assertEquals(new Integer(3), result);
 
@@ -40,8 +36,7 @@ public class ArithPostFixEvaluatorTest
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateSub()
-    {
+    public void testEvaluateSub() {
 	Integer result = evaluator.evaluate("1 2 -");
 	assertEquals(new Integer(-1), result);
 
@@ -53,8 +48,7 @@ public class ArithPostFixEvaluatorTest
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateMult()
-    {
+    public void testEvaluateMult() {
 	Integer result = evaluator.evaluate("1 2 *");
 	assertEquals(new Integer(2), result);
 
@@ -66,8 +60,7 @@ public class ArithPostFixEvaluatorTest
     }
 
     @Test(timeout = 5000)
-    public void testEvaluateNegate()
-    {
+    public void testEvaluateNegate() {
 	Integer result = evaluator.evaluate("1 !");
 	assertEquals(new Integer(-1), result);
 
@@ -79,8 +72,7 @@ public class ArithPostFixEvaluatorTest
     }
 
     @Test(timeout = 5000, expected = IllegalPostFixExpressionException.class)
-    public void testInvalidExpression()
-    {
+    public void testInvalidExpression() {
 	evaluator.evaluate("1 2");
     }
 

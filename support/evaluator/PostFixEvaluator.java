@@ -8,8 +8,7 @@ package evaluator;
  * @param <T>
  *            the type of result to be evaluated
  */
-public interface PostFixEvaluator<T>
-{
+public interface PostFixEvaluator<T> {
 
     /**
      * Evaluates the post fix expression and returns a value.

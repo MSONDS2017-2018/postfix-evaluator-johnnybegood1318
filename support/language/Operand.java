@@ -8,8 +8,7 @@ package language;
  * @param <T>
  *            the type of the stored data
  */
-public class Operand<T>
-{
+public class Operand<T> {
 
     private final T value;
 
@@ -19,8 +18,7 @@ public class Operand<T>
      * @param value
      *            the value to be wrapped
      */
-    public Operand(T value)
-    {
+    public Operand(T value) {
 	this.value = value;
     }
 
@@ -29,13 +27,11 @@ public class Operand<T>
      * 
      * @return the concrete value stored in this {@link Operand}
      */
-    public T getValue()
-    {
+    public T getValue() {
 	return value;
     }
 
-    public String toString()
-    {
+    public String toString() {
 	return value.toString();
     }
 

@@ -12,17 +12,15 @@ import language.Operator;
  * @param <T>
  *            - the type of data held in an operand
  */
-public interface PostFixParser<T>
-{
+public interface PostFixParser<T> {
 
     /**
      * A {@link PostFixParser} can produce different types.
-     * 
+     *
      * @author jcollard, jddevaug
      *
      */
-    public static enum Type
-    {
+    public static enum Type {
 
 	/**
 	 * Indicates that the value being parsed is an {@link Operand}.

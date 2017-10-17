@@ -45,47 +45,38 @@ import parser.PostFixParser;
  * @author jcollard, jddevaug
  * 
  */
-public class ArithEquationParser implements PostFixParser<Integer>
-{
+public class ArithEquationParser implements PostFixParser<Integer> {
 
-    private static interface OperatorConstructor
-    {
+    private static interface OperatorConstructor {
 	public Operator<Integer> construct();
     }
 
     private static final Map<String, OperatorConstructor> operators;
 
-    private static boolean isParseable(String expr)
-    {
+    private static boolean isParseable(String expr) {
 	Scanner s = new Scanner(expr);
 	boolean varFound = false;
-	while (s.hasNext())
-	{
+	while (s.hasNext()) {
 	    // If we find an integer, we are good.
-	    if (s.hasNextInt())
-	    {
+	    if (s.hasNextInt()) {
 		s.nextInt();
 		continue;
 	    }
 	    String token = s.next();
 	    // If we find a string that is not an operator
 	    // return false
-	    if (token.matches("([A-Z])|([a-z])"))
-	    {
+	    if (token.matches("([A-Z])|([a-z])")) {
 		varFound = true;
-		operators.put(token, new OperatorConstructor()
-		{
+		operators.put(token, new OperatorConstructor() {
 
 		    @Override
-		    public Operator<Integer> construct()
-		    {
+		    public Operator<Integer> construct() {
 			return new VariableOperator();
 		    }
 		});
 		continue;
 	    }
-	    if (!operators.containsKey(token) && !varFound)
-	    {
+	    if (!operators.containsKey(token) && !varFound) {
 		s.close();
 		return false;
 	    }
@@ -95,76 +86,61 @@ public class ArithEquationParser implements PostFixParser<Integer>
 	return true;
     }
 
-    static
-    {
+    static {
 	operators = new HashMap<String, ArithEquationParser.OperatorConstructor>();
 
-	operators.put("+", new OperatorConstructor()
-	{
+	operators.put("+", new OperatorConstructor() {
 
 	    @Override
-	    public Operator<Integer> construct()
-	    {
+	    public Operator<Integer> construct() {
 		return new PlusOperator();
 	    }
 	});
 
-	operators.put("*", new OperatorConstructor()
-	{
+	operators.put("*", new OperatorConstructor() {
 
 	    @Override
-	    public Operator<Integer> construct()
-	    {
+	    public Operator<Integer> construct() {
 		return new MultOperator();
 	    }
 	});
 
-	operators.put("-", new OperatorConstructor()
-	{
+	operators.put("-", new OperatorConstructor() {
 
 	    @Override
-	    public Operator<Integer> construct()
-	    {
+	    public Operator<Integer> construct() {
 		return new SubOperator();
 	    }
 	});
 
-	operators.put("/", new OperatorConstructor()
-	{
+	operators.put("/", new OperatorConstructor() {
 
 	    @Override
-	    public Operator<Integer> construct()
-	    {
+	    public Operator<Integer> construct() {
 		return new DivOperator();
 	    }
 	});
 
-	operators.put("!", new OperatorConstructor()
-	{
+	operators.put("!", new OperatorConstructor() {
 
 	    @Override
-	    public Operator<Integer> construct()
-	    {
+	    public Operator<Integer> construct() {
 		return new NegateOperator();
 	    }
 	});
 
-	operators.put("=", new OperatorConstructor()
-	{
+	operators.put("=", new OperatorConstructor() {
 
 	    @Override
-	    public Operator<Integer> construct()
-	    {
+	    public Operator<Integer> construct() {
 		return new EqualOperator();
 	    }
 	});
 
-	operators.put("^", new OperatorConstructor()
-	{
+	operators.put("^", new OperatorConstructor() {
 
 	    @Override
-	    public Operator<Integer> construct()
-	    {
+	    public Operator<Integer> construct() {
 		return new ExpOperator();
 	    }
 	});
@@ -185,14 +161,11 @@ public class ArithEquationParser implements PostFixParser<Integer>
      * @throws IllegalArgumentException
      *             if expr is no a valid arithmetic expression.
      */
-    public ArithEquationParser(String expr)
-    {
-	if (expr == null)
-	{
+    public ArithEquationParser(String expr) {
+	if (expr == null) {
 	    throw new NullPointerException("The expression must be non-null.");
 	}
-	if (!isParseable(expr))
-	{
+	if (!isParseable(expr)) {
 	    throw new IllegalArgumentException("The string \"" + expr
 		    + "\" is not a valid ArithPostFix expression.");
 	}
@@ -204,33 +177,27 @@ public class ArithEquationParser implements PostFixParser<Integer>
      * {@inheritDoc}.
      */
     @Override
-    public boolean hasNext()
-    {
+    public boolean hasNext() {
 	getNextParsable();
 	return nextOperand != null || nextOperator != null;
     }
 
-    public boolean hasNextOperator()
-    {
+    public boolean hasNextOperator() {
 	getNextParsable();
 	return nextOperator != null;
     }
 
-    private final void getNextParsable()
-    {
+    private final void getNextParsable() {
 	// If the next parseable has not been given, do nothing.
-	if (nextOperand != null || nextOperator != null)
-	{
+	if (nextOperand != null || nextOperator != null) {
 	    return;
 	}
 	// If the token is an int, generate an integer operand
-	if (tokenizer.hasNextInt())
-	{
+	if (tokenizer.hasNextInt()) {
 	    int token = tokenizer.nextInt();
 	    nextOperand = new Operand<Integer>(token);
 	    return;
-	} else if (tokenizer.hasNext())
-	{
+	} else if (tokenizer.hasNext()) {
 	    // Otherwise return the associated operator
 	    String token = tokenizer.next();
 	    nextOperator = operators.get(token).construct();
@@ -241,14 +208,11 @@ public class ArithEquationParser implements PostFixParser<Integer>
      * {@inheritDoc}.
      */
     @Override
-    public Type nextType()
-    {
-	if (!hasNext())
-	{
+    public Type nextType() {
+	if (!hasNext()) {
 	    throw new IllegalStateException("End of expression was reached.");
 	}
-	if (nextOperator != null)
-	{
+	if (nextOperator != null) {
 	    return Type.OPERATOR;
 	}
 	return Type.OPERAND;
@@ -258,10 +222,8 @@ public class ArithEquationParser implements PostFixParser<Integer>
      * {@inheritDoc}.
      */
     @Override
-    public Operand<Integer> nextOperand()
-    {
-	if (nextType() != PostFixParser.Type.OPERAND)
-	{
+    public Operand<Integer> nextOperand() {
+	if (nextType() != PostFixParser.Type.OPERAND) {
 	    throw new IllegalStateException("Operand could not be parsed.");
 	}
 	Operand<Integer> temp = nextOperand;
@@ -273,10 +235,8 @@ public class ArithEquationParser implements PostFixParser<Integer>
      * {@inheritDoc}.
      */
     @Override
-    public Operator<Integer> nextOperator()
-    {
-	if (nextType() != PostFixParser.Type.OPERATOR)
-	{
+    public Operator<Integer> nextOperator() {
+	if (nextType() != PostFixParser.Type.OPERATOR) {
 	    throw new IllegalStateException("Operator could not be parsed.");
 	}
 	Operator<Integer> temp = nextOperator;
